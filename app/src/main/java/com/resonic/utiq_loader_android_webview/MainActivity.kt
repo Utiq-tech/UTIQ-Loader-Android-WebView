@@ -3,7 +3,6 @@ package com.resonic.utiq_loader_android_webview
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebResourceResponse
-import android.webkit.WebStorage
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
@@ -24,16 +23,22 @@ class MainActivity : AppCompatActivity() {
         //enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        WebStorage.getInstance().deleteAllData()
+        //WebStorage.getInstance().deleteAllData()
         webView = findViewById(R.id.webView)
         webView.webViewClient = object : WebViewClient() {
             @Deprecated("Deprecated in Java")
             // From API 21 we should use another overload
             override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
-                return if ("mobile-page" in url || "token-stub" in url || "mno-precheck" in url || "mno-selector" in url || "tmi-stub" in url || "data" in url) handleRequest(
+                return if ("utiq-test.brand-demo.com" in url) handleRequest(
                     url
                 ) else null
-                //return null
+//                return handleRequest(url)
+            }
+
+            @Deprecated("Deprecated in Java")
+            override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
+                view.loadUrl(url!!)
+                return true
             }
 
             private fun handleRequest(url: String): WebResourceResponse? {
@@ -70,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         webView.addJavascriptInterface(WebAppInterface(webView), "AndroidFunction")
+        //webView.loadUrl("http://192.168.1.129:8080/stage/utiq/mobile/mobile-page.html")
         webView.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/mobile-page.html")
     }
 

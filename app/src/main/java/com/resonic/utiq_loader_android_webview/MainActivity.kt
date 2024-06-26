@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
-        webView.addJavascriptInterface(WebAppInterface(webView, baseContext), "AndroidFunction")
+        webView.addJavascriptInterface(WebAppInterface(webView, this), "AndroidFunction")
         webView.loadUrl("http://192.168.1.129:8080/stage/utiq/mobile/native-page.html")
         //webView.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/native-page.html")
     }
@@ -31,3 +31,4 @@ class MainActivity : AppCompatActivity() {
         setTitle(title)
     }
 }
+

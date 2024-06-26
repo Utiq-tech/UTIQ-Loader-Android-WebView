@@ -47,4 +47,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     //app dependencies
     implementation(libs.okhttp)
+    implementation(libs.utiq)
 }

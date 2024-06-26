@@ -2,20 +2,14 @@ package com.resonic.utiq_loader_android_webview
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import okhttp3.Call
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var webView: WebView
-    private val okHttpClient: OkHttpClient = OkHttpClient.Builder().build()
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,58 +19,12 @@ class MainActivity : AppCompatActivity() {
 
         //WebStorage.getInstance().deleteAllData()
         webView = findViewById(R.id.webView)
-        webView.webViewClient = object : WebViewClient() {
-            @Deprecated("Deprecated in Java")
-            // From API 21 we should use another overload
-            override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
-                return if ("utiq-test.brand-demo.com" in url) handleRequest(
-                    url
-                ) else null
-//                return handleRequest(url)
-            }
-
-            @Deprecated("Deprecated in Java")
-            override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
-                view.loadUrl(url!!)
-                return true
-            }
-
-            private fun handleRequest(url: String): WebResourceResponse? {
-                try {
-                    val call: Call = okHttpClient.newCall(
-                        Request.Builder()
-                            .addHeader(
-                                "x-cryptip",
-                                "54fc04fcfdee14ad8268d59b3303baf8854bc4d27308a2668dd47ed2a8a54cae"
-                            )
-                            .url(url)
-                            .build()
-                    )
-                    val response: Response = call.execute()
-                    updateScreenTitle(response.code.toString())
-
-                    return WebResourceResponse(
-                        response.header(
-                            "content-type",
-                            "text/plain"
-                        ),  // You can set something other as default content-type
-                        response.header(
-                            "content-encoding",
-                            "utf-8"
-                        ),  // Again, you can set another encoding as default
-                        response.body!!.byteStream()
-                    )
-                } catch (e: Exception) {
-                    // TODO: Figure out how to show a custom error screen when we fail
-                    return null
-                }
-            }
-        }
+        webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
-        webView.addJavascriptInterface(WebAppInterface(webView), "AndroidFunction")
-        //webView.loadUrl("http://192.168.1.129:8080/stage/utiq/mobile/mobile-page.html")
-        webView.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/mobile-page.html")
+        webView.addJavascriptInterface(WebAppInterface(webView, baseContext), "AndroidFunction")
+        webView.loadUrl("http://192.168.1.129:8080/stage/utiq/mobile/native-page.html")
+        //webView.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/native-page.html")
     }
 
     private fun updateScreenTitle(title: String) {

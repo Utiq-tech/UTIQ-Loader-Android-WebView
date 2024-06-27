@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         webView.addJavascriptInterface(WebAppInterface(webView, this), "AndroidFunction")
-        webView.loadUrl("http://192.168.1.129:8080/stage/utiq/mobile/native-page.html")
-        //webView.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/native-page.html")
+        //webView.loadUrl("http://192.168.1.129:8080/stage/utiq/mobile/native-page.html")
+        webView.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/native-page.html")
     }
 
     private fun updateScreenTitle(title: String) {

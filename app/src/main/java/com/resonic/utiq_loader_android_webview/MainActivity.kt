@@ -1,13 +1,8 @@
 package com.resonic.utiq_loader_android_webview
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
-import android.os.Build
 import android.os.Bundle
-import android.webkit.WebResourceRequest
-import android.webkit.WebResourceResponse
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
@@ -15,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
     lateinit var webView: WebView
+    val token = "54fc04fcfdee14ad8268d59b3303baf8854bc4d27308a2668dd47ed2a8a54cae"
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             it.settings.javaScriptEnabled = true
             it.settings.domStorageEnabled = true
             it.addJavascriptInterface(WebAppInterface(it), "AndroidFunction")
-            it.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/mobile-page.html")
+            it.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/mobile-page.html?utiq_stub=$token")
         }
     }
 }

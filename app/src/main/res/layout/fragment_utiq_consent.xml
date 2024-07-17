@@ -18,6 +18,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/logo" />
+
         <TextView
             android:id="@+id/title_text_view"
             style="@style/BoldText"
@@ -81,8 +88,8 @@
             android:id="@+id/accept_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:text="Accept"
             android:textSize="11sp"

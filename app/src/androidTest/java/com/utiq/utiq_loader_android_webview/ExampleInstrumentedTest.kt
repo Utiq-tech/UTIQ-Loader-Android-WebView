@@ -1,4 +1,4 @@
-package com.resonic.utiq_loader_android_webview
+package com.utiq.utiq_loader_android_webview
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

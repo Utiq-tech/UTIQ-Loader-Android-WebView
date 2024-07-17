@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.resonic.utiq_loader_android_webview"
+    namespace = "com.utiq.utiq_loader_android_webview"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.resonic.utiq_loader_android_webview"
+        applicationId = "com.utiq.utiq_loader_android_webview"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -25,6 +25,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    viewBinding {
+        enable = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

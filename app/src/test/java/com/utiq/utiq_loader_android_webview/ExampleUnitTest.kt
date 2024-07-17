@@ -1,4 +1,4 @@
-package com.resonic.utiq_loader_android_webview
+package com.utiq.utiq_loader_android_webview
 
 import org.junit.Test
 

@@ -14,11 +14,11 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.utiq.utiq_loader_android_webview.databinding.FragmentUtiqConsentBinding
+import com.utiq.utiq_loader_android_webview.databinding.DialogFragmentUtiqConsentBinding
 
-class UtiqConsent : DialogFragment(R.layout.fragment_utiq_consent) {
+class UtiqConsentDialogFragment: DialogFragment(R.layout.dialog_fragment_utiq_consent) {
 
-    private var _binding: FragmentUtiqConsentBinding? = null
+    private var _binding: DialogFragmentUtiqConsentBinding? = null
     private val binding get() = _binding!!
     private var action: ((consent: Boolean) -> Unit)? =
         null
@@ -35,7 +35,7 @@ class UtiqConsent : DialogFragment(R.layout.fragment_utiq_consent) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentUtiqConsentBinding.inflate(inflater, container, false)
+        _binding = DialogFragmentUtiqConsentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -56,12 +56,9 @@ class UtiqConsent : DialogFragment(R.layout.fragment_utiq_consent) {
     }
 
     companion object {
-        fun open(
-            fm: FragmentManager?,
-            action: (omPermissionAccepted: Boolean) -> Unit = { _ -> }
-        ) {
-            fm?.let {
-                val dialogFragment = UtiqConsent()
+        fun open(fragmentManager: FragmentManager, action: (omPermissionAccepted: Boolean) -> Unit = { _ -> }) {
+            fragmentManager.let {
+                val dialogFragment = UtiqConsentDialogFragment()
                 dialogFragment.action = action
                 dialogFragment.show(it, null)
             }

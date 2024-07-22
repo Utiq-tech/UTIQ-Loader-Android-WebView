@@ -27,10 +27,8 @@ class MainActivity : AppCompatActivity() {
             settings.domStorageEnabled = true
             addJavascriptInterface(WebAppInterface(this@MainActivity, { martTechPass, adTechPass ->
                 setUtiqIdsOnWeb(martTechPass, adTechPass)
-                setWebViewTextField("UTIQ IDs fetched")
-            }, {
-                setUtiqIdsOnWeb("", "")
-                setWebViewTextField("UTIQ Consent rejected")
+            }, { text ->
+                setWebViewTextField(text)
             }), "AndroidFunction")
             loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/native-page.html")
         }

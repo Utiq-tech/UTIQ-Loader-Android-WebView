@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             }, { text ->
                 setWebViewTextField(text)
             }), "AndroidFunction")
-            loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/native-page.html")
+            loadUrl("https://utiq-test.utest1.work/utiq/mobile/native-page.html")
         }
     }
 

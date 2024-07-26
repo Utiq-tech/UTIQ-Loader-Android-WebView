@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             it.settings.javaScriptEnabled = true
             it.settings.domStorageEnabled = true
             it.addJavascriptInterface(WebAppInterface(it), "AndroidFunction")
-            it.loadUrl("https://utiq-test.brand-demo.com/utiq/mobile/mobile-page.html?utiq_stub=$token")
+            it.loadUrl("https://utiq-test.utest1.work/utiq/mobile/mobile-page.html?utiq_stub=$token")
         }
     }
 }
